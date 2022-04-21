@@ -9,9 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.catapp.model.CatModel;
+import com.example.catapp.model.ImageData;
 
-import java.util.ArrayList;
 
 public class FavoriteDB extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
@@ -67,7 +66,7 @@ public class FavoriteDB extends SQLiteOpenHelper {
 
     public Cursor readAllData(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT*FROM " + TABLE_NAME + " WHERE " + KEY_ID + "=" + id + "";
+        String sql = "SELECT*FROM " + TABLE_NAME + " WHERE " + KEY_ID + "="+ "'" + id + "'";
         return db.rawQuery(sql, null, null);
     }
 

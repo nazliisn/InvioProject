@@ -15,12 +15,8 @@ import com.example.catapp.view.HomeFragment;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
 
-
-    private String BASE_URL = "https://api.thecatapi.com/v1/";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

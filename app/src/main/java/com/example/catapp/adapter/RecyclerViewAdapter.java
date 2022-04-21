@@ -1,7 +1,10 @@
 package com.example.catapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,21 +46,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (firstStart) {
             createTableOnFirstStart();
         }
-
         return new RowHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.RowHolder holder, int position) {
+        final CatModel catModel = catList.get(position);
         try {
-            holder.bind(catList.get(position));
-
+            holder.bind(catModel);
+            readCursorData(catModel, holder);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     @Override
     public int getItemCount() {
         return catList.size();
@@ -71,6 +72,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         editor.apply();
     }
 
+    @SuppressLint("Range")
+    public void readCursorData(CatModel catModel, RecyclerView.ViewHolder viewHolder) {
+        Cursor cursor = favoriteDB.readAllData(catModel.getId());
+        SQLiteDatabase database = favoriteDB.getReadableDatabase();
+        try {
+            while (cursor.moveToNext()) {
+                String item = cursor.getString(cursor.getColumnIndex(FavoriteDB.FAVSTATUS));
+                catModel.setFavStatus(item);
+                if (item != null && item.equals("1")) {
+                    viewHolder.itemView.findViewById(R.id.favorite_button).setBackgroundResource(R.drawable.favorite_press);
+                } else
+                    viewHolder.itemView.findViewById(R.id.favorite_button).setBackgroundResource(R.drawable.favorite);
+
+            }
+        } finally {
+            if (cursor != null && cursor.isClosed())
+                cursor.close();
+            database.close();
+        }
+    }
 
     public class RowHolder extends RecyclerView.ViewHolder {
         TextView textName;
@@ -85,18 +106,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textName = itemView.findViewById(R.id.text_name);
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
-            favoriteButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if (catModel.getFavStatus().equals("0")) {
-                        favoriteButton.setBackgroundResource(R.drawable.favorite_press);
-                        catModel.setFavStatus("1");
-                        favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
 
-                    } else {
-                        favoriteButton.setBackgroundResource(R.drawable.favorite);
-                        catModel.setFavStatus("0");
-                        favoriteDB.remove_fav(catModel.getId());
-                    }
+            favoriteButton.setOnClickListener(view -> {
+                if (catModel.getFavStatus()==null) {
+                    catModel.setFavStatus("1");
+                    favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
+                    favoriteButton.setBackgroundResource(R.drawable.favorite_press);
+                } else {
+                    catModel.setFavStatus(null);
+                    favoriteDB.remove_fav(catModel.getId());
+                    favoriteButton.setBackgroundResource(R.drawable.favorite);
                 }
             });
             textName.setText(catModel.getName());
@@ -106,27 +125,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 }
 
 
-    /*public void readCursorData(CatModel catModel, RecyclerView.ViewHolder viewHolder) {
-        ImageButton imageButton;
-        Cursor cursor=favoriteDB.readAllData(catModel.id);
-        SQLiteDatabase database=favoriteDB.getReadableDatabase();
-        try {
-            while (cursor.moveToNext()){
-                @SuppressLint("Range") String item =cursor.getString(cursor.getColumnIndex(FavoriteDB.FAVSTATUS));
-                catModel.FavStatus=item;
 
 
-                if(item!=null&&item.equals("1")){
-                    viewHolder.itemView.findViewById(R.id.favorite_button).setBackgroundResource(R.drawable.favorite_press);
-                }else
-                    viewHolder.itemView.findViewById(R.id.favorite_button).setBackgroundResource(R.drawable.favorite);
-
-            }
-
-        }finally {
-            if(cursor!=null&&cursor.isClosed())
-                cursor.close();
-
-        }
-
-    }*/

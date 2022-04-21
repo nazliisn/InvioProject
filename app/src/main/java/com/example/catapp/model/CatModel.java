@@ -2,8 +2,6 @@ package com.example.catapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class CatModel {
     @SerializedName("id")
     private String id;
@@ -11,10 +9,18 @@ public class CatModel {
     @SerializedName("name")
     private String name;
 
-    private String FavStatus="0";
+    private String FavStatus = null;
 
     @SerializedName("image")
     private ImageData imageData;
+
+    public CatModel(String name, String id, String image) {
+        this.name = name;
+        this.id = id;
+        this.imageData = new ImageData(image);
+
+    }
+
 
     public String getId() {
         return id;
@@ -37,7 +43,7 @@ public class CatModel {
     }
 
     public void setFavStatus(String favStatus) {
-        FavStatus = favStatus;
+        this.FavStatus = favStatus;
     }
 
     public ImageData getImageData() {
