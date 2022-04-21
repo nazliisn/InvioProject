@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/card.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main2.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main3.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_dashboard.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_home.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_notifications.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/row_layout.xml" value="0.11980749746707194" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10236220472440945" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1525" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
