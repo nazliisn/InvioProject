@@ -1,6 +1,5 @@
 package com.example.catapp.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,9 +80,5 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void detailPage(View view) {
-        Intent intent = new Intent(getActivity(), DetailPage.class);
-        // i.putExtra("id",charSequence);
-        startActivity(intent);
-    }
+
 }

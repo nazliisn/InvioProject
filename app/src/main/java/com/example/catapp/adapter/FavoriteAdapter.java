@@ -1,7 +1,5 @@
 package com.example.catapp.adapter;
 
-import static com.example.catapp.R.drawable.favorite_press;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +71,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
             textName = itemView.findViewById(R.id.text_name);
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
-
 
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {

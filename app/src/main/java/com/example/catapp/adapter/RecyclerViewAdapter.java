@@ -2,6 +2,7 @@ package com.example.catapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.catapp.R;
 import com.example.catapp.model.CatModel;
+import com.example.catapp.view.DetailPage;
 import com.example.catapp.view.FavoriteDB;
 
 import java.io.IOException;
@@ -55,10 +57,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         try {
             holder.bind(catModel);
             readCursorData(catModel, holder);
+            holder.detailPage(catModel);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public int getItemCount() {
         return catList.size();
@@ -108,7 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             favoriteButton = itemView.findViewById(R.id.favorite_button);
 
             favoriteButton.setOnClickListener(view -> {
-                if (catModel.getFavStatus()==null) {
+                if (catModel.getFavStatus() == null) {
                     catModel.setFavStatus("1");
                     favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
                     favoriteButton.setBackgroundResource(R.drawable.favorite_press);
@@ -120,6 +124,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             });
             textName.setText(catModel.getName());
             Glide.with(context).load(catModel.getImageData().getUrl()).into(cat_avatar);
+        }
+
+        public void detailPage(CatModel catModel) {
+            textName = itemView.findViewById(R.id.text_name);
+
+            textName.setOnClickListener(view -> {
+                Intent intent = new Intent(context, DetailPage.class);
+                String id = catModel.getId();
+                intent.putExtra("id", id);
+                context.startActivity(intent);
+
+
+            });
+
         }
     }
 }

@@ -2,50 +2,17 @@ package com.example.catapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
-public class CatModel {
-    @SerializedName("breeds")
-    private ArrayList<Breed> breedData = new ArrayList();
+public class Breed {
     @SerializedName("id")
     private String id;
     @SerializedName("name")
     private String name;
-    private String FavStatus = null;
-    @SerializedName("image")
-    private ImageData imageData;
-    @SerializedName("url")
-    private String url;
     @SerializedName("description")
     private String description;
     @SerializedName("origin")
     private String origin;
     @SerializedName("reference_image_id")
     private String reference_image_id;
-
-    public CatModel(String name, String id, String image) {
-        this.name = name;
-        this.id = id;
-        this.imageData = new ImageData(image);
-
-    }
-
-    public ArrayList<Breed> getBreedData() {
-        return breedData;
-    }
-
-    public void setBreedData(ArrayList<Breed> breedData) {
-        this.breedData = breedData;
-    }
-
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getReference_image_id() {
         return reference_image_id;
@@ -71,22 +38,6 @@ public class CatModel {
         this.name = name;
     }
 
-    public String getFavStatus() {
-        return FavStatus;
-    }
-
-    public void setFavStatus(String favStatus) {
-        this.FavStatus = favStatus;
-    }
-
-    public ImageData getImageData() {
-        return imageData;
-    }
-
-    public void setImageData(ImageData imageData) {
-        this.imageData = imageData;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -102,6 +53,4 @@ public class CatModel {
     public void setOrigin(String origin) {
         this.origin = origin;
     }
-
-
 }
