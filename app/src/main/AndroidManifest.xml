@@ -22,6 +22,8 @@
         </activity>
         <activity
             android:name=".view.DetailPage"
+            android:label="Detail"
+
             android:exported="false" />
         <activity
             android:name=".MainActivity"

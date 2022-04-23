@@ -11,16 +11,6 @@ public class Breed {
     private String description;
     @SerializedName("origin")
     private String origin;
-    @SerializedName("reference_image_id")
-    private String reference_image_id;
-
-    public String getReference_image_id() {
-        return reference_image_id;
-    }
-
-    public void setReference_image_id(String reference_image_id) {
-        this.reference_image_id = reference_image_id;
-    }
 
     public String getId() {
         return id;

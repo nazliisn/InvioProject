@@ -40,9 +40,6 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //https://api.thecatapi.com/v1/breeds
-
-
         recyclerView = root.findViewById(R.id.recyclerView);
 
         Gson gson = new GsonBuilder().setLenient().create();
@@ -52,8 +49,6 @@ public class HomeFragment extends Fragment {
                 .build();
 
         SearchView searchView = root.findViewById(R.id.search_view);
-
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -67,8 +62,6 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
-
-
         loadData();
         return root;
     }
@@ -95,6 +88,4 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-
-
 }

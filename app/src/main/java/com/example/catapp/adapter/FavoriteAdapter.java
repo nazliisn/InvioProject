@@ -43,8 +43,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
         holder.textName.setText(catList.get(position).getName());
         holder.favoriteButton.setBackgroundResource(R.drawable.favorite_press);
         Glide.with(context).load(catList.get(position).getImageData().getUrl()).into(holder.cat_avatar);
-
-
     }
 
     @Override
@@ -62,16 +60,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
         TextView textName;
         ImageView cat_avatar;
         ImageButton favoriteButton;
-
-
         public RowHolder(@NonNull View itemView) {
             super(itemView);
-
-
             textName = itemView.findViewById(R.id.text_name);
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
-
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -81,12 +74,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
 
                     favoriteDB.remove_fav(favoriteItem.getId());
                     removeItem(position);
-
-
                 }
             });
-
-
         }
     }
 }

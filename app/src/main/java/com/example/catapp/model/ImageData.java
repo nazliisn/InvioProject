@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public class ImageData {
     @SerializedName("id")
     private String id;
-
     @SerializedName("url")
     private String url;
 

@@ -112,26 +112,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-
                 String searchString = charSequence.toString();
-
                 if (searchString.isEmpty()) {
-
                     filteredUserList = catList;
-
                 } else {
-
                     ArrayList<CatModel> tempFilteredList = new ArrayList<>();
-
                     for (CatModel user : catList) {
-
-                        // search for user title
                         if (user.getName().toLowerCase().contains(searchString)) {
-
                             tempFilteredList.add(user);
                         }
                     }
-
                     filteredUserList = tempFilteredList;
                 }
 
@@ -139,7 +129,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 filterResults.values = filteredUserList;
                 return filterResults;
             }
-
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filteredUserList = (ArrayList<CatModel>) filterResults.values;
@@ -175,7 +164,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                     intent.putExtra("id", id);
                     intent.putExtra("favStatus", favStatus);
-
                     context.startActivity(intent);
                 }
             });
