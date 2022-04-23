@@ -1,6 +1,7 @@
 package com.example.catapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.catapp.R;
 import com.example.catapp.model.CatModel;
+import com.example.catapp.view.DetailPage;
 import com.example.catapp.view.FavoriteDB;
 
 import java.util.ArrayList;
@@ -60,11 +62,29 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
         TextView textName;
         ImageView cat_avatar;
         ImageButton favoriteButton;
+
         public RowHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.text_name);
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, DetailPage.class);
+                    int position = getAdapterPosition();
+                    String id = catList.get(position).getId();
+                    String favStatus = catList.get(position).getFavStatus();
+
+                    if (favStatus == null) {
+                        favStatus = "0";
+                    }
+                    intent.putExtra("id", id);
+                    intent.putExtra("favStatus", favStatus);
+                    context.startActivity(intent);
+                }
+            });
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
