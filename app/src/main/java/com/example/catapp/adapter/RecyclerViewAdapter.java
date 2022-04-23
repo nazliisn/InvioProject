@@ -108,7 +108,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public Filter getFilter() {
-
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
@@ -129,6 +128,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 filterResults.values = filteredUserList;
                 return filterResults;
             }
+
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filteredUserList = (ArrayList<CatModel>) filterResults.values;
@@ -159,8 +159,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     Intent intent = new Intent(context, DetailPage.class);
                     String id = catModel.getId();
                     String favStatus = catModel.getFavStatus();
-                    if (favStatus==null){
-                        favStatus="0";
+                    if (favStatus == null) {
+                        favStatus = "0";
                     }
                     intent.putExtra("id", id);
                     intent.putExtra("favStatus", favStatus);
@@ -169,7 +169,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             });
 
             favoriteButton.setOnClickListener(view -> {
-                if (catModel.getFavStatus() == null|| catModel.getFavStatus() == "0") {
+                if (catModel.getFavStatus() == null || catModel.getFavStatus() == "0") {
                     catModel.setFavStatus("1");
                     favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
                     favoriteButton.setBackgroundResource(R.drawable.favorite_press);
