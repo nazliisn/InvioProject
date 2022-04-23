@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backround"
+    android:background="@color/background"
     android:gravity="center"
 
     tools:context=".view.DetailPage">
@@ -17,8 +17,7 @@
         android:maxHeight="250dp"
         android:src="@drawable/image_backround"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="413dp"
@@ -35,14 +34,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-        <TextView
-            android:id="@+id/text_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            tools:ignore="MissingConstraints" />
+            android:gravity="center"
+            android:orientation="horizontal"
+
+
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="TextView"
+                android:textColor="@color/title_color"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"></Space>
+
+
+            <ImageButton
+
+                android:id="@+id/favorite_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/favorite"
+
+                />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"></Space>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -53,7 +85,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/location">
+                android:background="@drawable/icons_location">
 
             </ImageView>
 
@@ -64,6 +96,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
+                android:textColor="@color/title_color"
                 android:textSize="18dp"
 
                 android:textStyle="bold"
@@ -77,10 +110,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="left"
             android:text="TextView"
-            android:textSize="16dp"
+            android:textSize="19dp"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 

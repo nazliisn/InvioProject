@@ -9,11 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,14 +29,18 @@ import com.example.catapp.view.FavoriteDB;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RowHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RowHolder> implements Filterable {
     private ArrayList<CatModel> catList;
     private Context context;
     private FavoriteDB favoriteDB;
+    private ArrayList<CatModel> filteredUserList;
 
-    public RecyclerViewAdapter(ArrayList<CatModel> catList, Context context) {
+
+    public RecyclerViewAdapter(ArrayList<CatModel> catList, FragmentActivity activity) {
         this.catList = catList;
-        this.context = context;
+        this.context = activity;
+        this.filteredUserList = catList;
+
     }
 
     @NonNull
@@ -41,7 +49,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.row_layout, parent, false);
+
         favoriteDB = new FavoriteDB(context);
+
 
         SharedPreferences preferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstStart = preferences.getBoolean("firstStart", true);
@@ -53,11 +63,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.RowHolder holder, int position) {
-        final CatModel catModel = catList.get(position);
+        final CatModel catModel = filteredUserList.get(position);
         try {
             holder.bind(catModel);
             readCursorData(catModel, holder);
-            holder.detailPage(catModel);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return catList.size();
+        return filteredUserList.size();
     }
 
     public void createTableOnFirstStart() {
@@ -97,10 +106,53 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String searchString = charSequence.toString();
+
+                if (searchString.isEmpty()) {
+
+                    filteredUserList = catList;
+
+                } else {
+
+                    ArrayList<CatModel> tempFilteredList = new ArrayList<>();
+
+                    for (CatModel user : catList) {
+
+                        // search for user title
+                        if (user.getName().toLowerCase().contains(searchString)) {
+
+                            tempFilteredList.add(user);
+                        }
+                    }
+
+                    filteredUserList = tempFilteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredUserList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredUserList = (ArrayList<CatModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     public class RowHolder extends RecyclerView.ViewHolder {
         TextView textName;
         ImageView cat_avatar;
         ImageButton favoriteButton;
+        SearchView searchView;
 
         public RowHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,9 +162,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textName = itemView.findViewById(R.id.text_name);
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
+            searchView = itemView.findViewById(R.id.search_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, DetailPage.class);
+                    String id = catModel.getId();
+                    String favStatus = catModel.getFavStatus();
+                    if (favStatus==null){
+                        favStatus="0";
+                    }
+                    intent.putExtra("id", id);
+                    intent.putExtra("favStatus", favStatus);
+
+                    context.startActivity(intent);
+                }
+            });
 
             favoriteButton.setOnClickListener(view -> {
-                if (catModel.getFavStatus() == null) {
+                if (catModel.getFavStatus() == null|| catModel.getFavStatus() == "0") {
                     catModel.setFavStatus("1");
                     favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
                     favoriteButton.setBackgroundResource(R.drawable.favorite_press);
@@ -123,24 +192,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
             });
             textName.setText(catModel.getName());
-            Glide.with(context).load(catModel.getImageData().getUrl()).into(cat_avatar);
+            Glide.with(context).load(catModel.getImageData().getUrl()).override(110, 110)
+                    .centerCrop().into(cat_avatar);
         }
 
-        public void detailPage(CatModel catModel) {
-            textName = itemView.findViewById(R.id.text_name);
 
-            textName.setOnClickListener(view -> {
-                Intent intent = new Intent(context, DetailPage.class);
-                String id = catModel.getId();
-                intent.putExtra("id", id);
-                context.startActivity(intent);
-
-
-            });
-
-        }
     }
 }
+
 
 
 

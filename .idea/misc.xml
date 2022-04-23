@@ -4,23 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable-v24/detaillinearLayout.xml" value="0.152" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable-v24/imagecorner.xml" value="0.1965" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/card.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/detail_linearlayout.xml" value="0.1025" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/detaillinearLayout.xml" value="0.152" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/detaillinearlayout.xml" value="0.152" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/empty_tall_divider.xml" value="0.1" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1525" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1525" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1525" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1525" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/image_backround.xml" value="0.152" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/image_shape.xml" value="0.2385" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/drawable/searchview_background.xml" value="0.1965" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_detail_page.xml" value="0.2" />
-        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main2.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_main3.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/activity_splash_screen.xml" value="0.16394927536231885" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_dashboard.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
-        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_home.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_home.xml" value="0.128" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/fragment_notifications.xml" value="0.24635416666666668" />
-        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/row_layout.xml" value="0.11980749746707194" />
+        <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/layout/row_layout.xml" value="0.2" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10236220472440945" />
         <entry key="..\:/Users/Naz/AndroidStudioProjects/CatApp2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1525" />
       </map>

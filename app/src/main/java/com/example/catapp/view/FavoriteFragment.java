@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ public class FavoriteFragment extends Fragment {
     RecyclerView recyclerView;
     FavoriteDB favoriteDB;
     FavoriteAdapter favoriteAdapter;
+    SearchView searchView;
     private List<CatModel> catModels = new ArrayList<>();
 
     @Override
@@ -32,13 +34,17 @@ public class FavoriteFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_favorite, container, false);
 
         favoriteDB = new FavoriteDB(getActivity());
+        searchView = root.findViewById(R.id.search_view);
         recyclerView = root.findViewById(R.id.recyclerView_favorite);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         loadData();
+
         return root;
     }
+
+
     @SuppressLint("Range")
     private void loadData() {
         if (catModels != null) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CatApp</string>
+    <string name="app_name">Cat App</string>
     <string name="title_activity_fav">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

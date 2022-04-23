@@ -11,7 +11,7 @@ public class CatModel {
     private String id;
     @SerializedName("name")
     private String name;
-    private String FavStatus = null;
+    private String FavStatus = "0";
     @SerializedName("image")
     private ImageData imageData;
     @SerializedName("url")

@@ -6,7 +6,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface CatAPI {
@@ -19,6 +18,5 @@ public interface CatAPI {
     @GET("images/search")
     Call<List<CatModel>> getDetail(@Query("breed_id") String q);
 
-    @GET("images/{id}")
-    Call<List<CatModel>> getAPIImage(@Path("id") String id);
+
 }

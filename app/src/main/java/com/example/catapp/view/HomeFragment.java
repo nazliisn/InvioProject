@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +34,6 @@ public class HomeFragment extends Fragment {
 
     private String BASE_URL = "https://api.thecatapi.com/v1/";
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +51,23 @@ public class HomeFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
+        SearchView searchView = root.findViewById(R.id.search_view);
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recyclerViewAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
 
         loadData();
         return root;
@@ -66,7 +83,6 @@ public class HomeFragment extends Fragment {
                 if (response.isSuccessful()) {
                     List<CatModel> responseList = response.body();
                     catModels = new ArrayList<>(responseList);
-
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerViewAdapter = new RecyclerViewAdapter(catModels, getActivity());
                     recyclerView.setAdapter(recyclerViewAdapter);
