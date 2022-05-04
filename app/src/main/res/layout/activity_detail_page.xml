@@ -1,121 +1,160 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:gravity="center"
 
+    android:gravity="center"
     tools:context=".view.DetailPage">
 
-
-    <ImageView
-        android:id="@+id/imageView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginBottom="10dp"
-        android:maxHeight="250dp"
-        android:src="@drawable/image_backround"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="280dp"
+        android:fitsSystemWindows="true"
+        tools:ignore="MissingConstraints">
 
-    <LinearLayout
-        android:layout_width="413dp"
-        android:layout_height="440dp"
-        android:layout_marginTop="50dp"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/image_background"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,MissingConstraints" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/detail_linearlayout"
-        android:backgroundTint="@color/white"
-        android:orientation="vertical"
+        android:elevation="10dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:ignore="ScrollViewCount">
 
-
-        android:padding="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-
-
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="250dp"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="TextView"
-                android:textColor="@color/title_color"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                tools:ignore="MissingConstraints" />
-
-            <Space
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"></Space>
-
-
-            <ImageButton
-
-                android:id="@+id/favorite_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/favorite"
-
-                />
-
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"></Space>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:padding="10dp">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/icons_location">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
 
-            </ImageView>
+
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/habibi"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textColor="@color/title_color"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:typeface="sans"
+                    tools:ignore="MissingConstraints" />
+
+                <Space
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+
+                    android:id="@+id/favorite_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+
+                    android:background="@drawable/favorite"
+
+                    />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/icon_location"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/icons_location">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/origin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+
+                    android:fontFamily="@font/habibi"
+                    android:text="TextView"
+                    android:textColor="@color/title_color"
+                    android:textSize="18dp"
+
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/origin"
+                android:id="@+id/text_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/habibi"
+
+                android:gravity="left"
                 android:text="TextView"
-                android:textColor="@color/title_color"
-                android:textSize="18dp"
-
-                android:textStyle="bold"
+                android:textSize="19dp"
                 tools:ignore="MissingConstraints" />
-
         </LinearLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:text="TextView"
-            android:textSize="19dp"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

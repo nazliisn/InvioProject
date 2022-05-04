@@ -22,6 +22,7 @@ import java.util.List;
 
 
 public class FavoriteFragment extends Fragment {
+
     RecyclerView recyclerView;
     FavoriteDB favoriteDB;
     FavoriteAdapter favoriteAdapter;
@@ -38,12 +39,9 @@ public class FavoriteFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerView_favorite);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         loadData();
-
         return root;
     }
-
 
     @SuppressLint("Range")
     private void loadData() {

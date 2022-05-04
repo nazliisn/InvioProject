@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
 
 public class SplashScreen extends AppCompatActivity {
+
     LottieAnimationView lottieAnimationView;
 
     @Override

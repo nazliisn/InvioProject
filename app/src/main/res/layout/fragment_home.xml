@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:viewBindingIgnore="true"
     tools:context=".view.HomeFragment">
 
     <LinearLayout
@@ -19,8 +20,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="16dp"
 
-            android:elevation="10dp"
             android:background="@drawable/searchview_background"
+            android:elevation="10dp"
             android:iconifiedByDefault="false"
             android:queryBackground="@android:color/transparent"
             android:queryHint="Search"

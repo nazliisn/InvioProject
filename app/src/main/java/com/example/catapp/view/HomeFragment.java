@@ -27,6 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
+
     ArrayList<CatModel> catModels;
     Retrofit retrofit;
     RecyclerView recyclerView;
@@ -40,6 +41,7 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         recyclerView = root.findViewById(R.id.recyclerView);
 
         Gson gson = new GsonBuilder().setLenient().create();
@@ -52,7 +54,6 @@ public class HomeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
             }
 

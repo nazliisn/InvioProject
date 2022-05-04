@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:layout_margin="10dp"
-    android:elevation="10dp"
     android:background="@drawable/card"
+    android:elevation="10dp"
     android:gravity="center"
-    android:outlineProvider="bounds"
+    android:orientation="horizontal"
 
-    android:orientation="horizontal">
+    android:outlineProvider="bounds">
 
     <ImageView
         android:id="@+id/cat_avatar"
@@ -22,6 +22,8 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_weight="1"
+
+        android:fontFamily="@font/habibi"
         android:gravity="center"
         android:text="TextView"
         android:textColor="@color/title_color"

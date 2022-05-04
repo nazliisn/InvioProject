@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHolder> {
 
+
     private ArrayList<CatModel> catList;
     private Context context;
     private FavoriteDB favoriteDB;
@@ -69,21 +70,18 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.RowHol
             cat_avatar = itemView.findViewById(R.id.cat_avatar);
             favoriteButton = itemView.findViewById(R.id.favorite_button);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, DetailPage.class);
-                    int position = getAdapterPosition();
-                    String id = catList.get(position).getId();
-                    String favStatus = catList.get(position).getFavStatus();
+            itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(context, DetailPage.class);
+                int position = getAdapterPosition();
+                String id = catList.get(position).getId();
+                String favStatus = catList.get(position).getFavStatus();
 
-                    if (favStatus == null) {
-                        favStatus = "0";
-                    }
-                    intent.putExtra("id", id);
-                    intent.putExtra("favStatus", favStatus);
-                    context.startActivity(intent);
+                if (favStatus == null) {
+                    favStatus = "0";
                 }
+                intent.putExtra("id", id);
+                intent.putExtra("favStatus", favStatus);
+                context.startActivity(intent);
             });
 
             favoriteButton.setOnClickListener(new View.OnClickListener() {

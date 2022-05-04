@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
 import com.example.catapp.databinding.ActivityMainBinding;
 import com.example.catapp.view.FavoriteFragment;
 import com.example.catapp.view.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

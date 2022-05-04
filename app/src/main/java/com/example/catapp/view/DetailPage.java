@@ -2,21 +2,20 @@ package com.example.catapp.view;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.catapp.R;
+import com.example.catapp.databinding.ActivityDetailPageBinding;
 import com.example.catapp.model.CatModel;
 import com.example.catapp.service.CatAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,76 +25,61 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailPage extends AppCompatActivity {
-    ImageView imageView;
-    TextView text_description;
-    TextView text_origin;
-    TextView text_name;
+    ActivityDetailPageBinding binding;
     Retrofit retrofit;
-    ImageButton favoriteButton;
-    String id;
-    String favStatus;
-    private List<CatModel> catModels = new ArrayList<>();
-
-
-    private String BASE_URL = "https://api.thecatapi.com/v1/";
+    private String id;
+    private String favStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_page);
+        binding = ActivityDetailPageBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         id = getIntent().getStringExtra("id");
         favStatus = getIntent().getStringExtra("favStatus");
 
-
-        imageView = findViewById(R.id.imageView);
-        text_description = findViewById(R.id.text_description);
-        text_origin = findViewById(R.id.origin);
-        text_name = findViewById(R.id.text_name);
-        favoriteButton = findViewById(R.id.favorite_button);
-
-
         Gson gson = new GsonBuilder().setLenient().create();
+        String BASE_URL = "https://api.thecatapi.com/v1/";
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
         loadData();
     }
 
     private void loadData() {
         if (favStatus.equals("1")) {
-            favoriteButton.setBackgroundResource(R.drawable.favorite_press);
+            binding.favoriteButton.setBackgroundResource(R.drawable.favorite_press);
         } else {
-            favoriteButton.setBackgroundResource(R.drawable.favorite);
+            binding.favoriteButton.setBackgroundResource(R.drawable.favorite);
         }
-
         final CatAPI catAPI = retrofit.create(CatAPI.class);
         Call<List<CatModel>> call = catAPI.getDetail(id);
 
         call.enqueue(new Callback<List<CatModel>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onResponse(Call<List<CatModel>> call, Response<List<CatModel>> response) {
+            public void onResponse(@NonNull Call<List<CatModel>> call, @NonNull Response<List<CatModel>> response) {
                 if (response.isSuccessful()) {
                     List<CatModel> responseList = response.body();
+                    assert responseList != null;
                     responseList.forEach(change -> {
                                 Glide.with(getApplicationContext()).load(change.getUrl()).override(300, 200)
-                                        .centerCrop().into(imageView);
-                                text_name.setText(change.getBreedData().get(0).getName());
-                                text_description.setText(change.getBreedData().get(0).getDescription());
-                                text_origin.setText(change.getBreedData().get(0).getOrigin());
+                                        .centerCrop().into(binding.imageView);
+                                binding.textName.setText(change.getBreedData().get(0).getName());
+                                binding.textDescription.setText(change.getBreedData().get(0).getDescription());
+                                binding.origin.setText(change.getBreedData().get(0).getOrigin());
                             }
                     );
                 }
             }
 
             @Override
-            public void onFailure(Call<List<CatModel>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<CatModel>> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });
     }
-
 }

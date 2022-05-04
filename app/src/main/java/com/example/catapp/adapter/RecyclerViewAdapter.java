@@ -40,18 +40,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.catList = catList;
         this.context = activity;
         this.filteredUserList = catList;
-
     }
 
     @NonNull
     @Override
     public RecyclerViewAdapter.RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.row_layout, parent, false);
 
         favoriteDB = new FavoriteDB(context);
-
 
         SharedPreferences preferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstStart = preferences.getBoolean("firstStart", true);
@@ -153,23 +150,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             favoriteButton = itemView.findViewById(R.id.favorite_button);
             searchView = itemView.findViewById(R.id.search_view);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, DetailPage.class);
-                    String id = catModel.getId();
-                    String favStatus = catModel.getFavStatus();
-                    if (favStatus == null) {
-                        favStatus = "0";
-                    }
-                    intent.putExtra("id", id);
-                    intent.putExtra("favStatus", favStatus);
-                    context.startActivity(intent);
+            itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(context, DetailPage.class);
+                String id = catModel.getId();
+                String favStatus = catModel.getFavStatus();
+                if (favStatus == null) {
+                    favStatus = "0";
                 }
+                intent.putExtra("id", id);
+                intent.putExtra("favStatus", favStatus);
+                context.startActivity(intent);
             });
 
             favoriteButton.setOnClickListener(view -> {
-                if (catModel.getFavStatus() == null || catModel.getFavStatus() == "0") {
+                if (catModel.getFavStatus() == null || catModel.getFavStatus().equals("0")) {
                     catModel.setFavStatus("1");
                     favoriteDB.insertIntoTheDatabase(catModel.getName(), catModel.getImageData().getUrl(), catModel.getId(), catModel.getFavStatus());
                     favoriteButton.setBackgroundResource(R.drawable.favorite_press);
